@@ -20,7 +20,9 @@ async function scrape(url) {
 
 scrape("https://web.whatsapp.com");*/
 const puppeteer = require("puppeteer");
-
+const name ="EEE/ECE/ENI '19";
+var f=0;
+const krait='';
 // Login Function Logic
 (async function main() {
   try {
@@ -38,22 +40,63 @@ const puppeteer = require("puppeteer");
     // //Searches person by title
     await page.waitForSelector("._3Tw1q");
     await delay(5000);
-    const target = await page.waitForSelector("span[title='Amritash Bpgc']");
+    //const target = await page.waitForSelector("span[title='Amritash Bpgc']");
+    //const target = await page.waitForSelector(`span[title=`${name}`]`);
+    //const target = await page.waitForSelector("._3Tw1q");
+    //const target = await page.waitForSelector("span[title='BijliwalEEE']");
+    const target = await page.waitForSelector("span[title='Mayank Mathur Bpgc']");
     await delay(10000);
     console.log('yes');
     await target.click();
     await delay(5000);
-    const inp = await page.$(
-        "#main > footer > div._3SvgF._1mHgA.copyable-area > div.DuUXI > div > div._1awRl.copyable-text.selectable-text"
-      );
+    //const krait = await page.waitForSelector("span");
+   // const krait = page.$eval("span", (element) => {
+     // return element.innerHTML
+   // })
     await delay(5000);
-     console.log('yes');
     
-    for (let i = 0; i < 69; i++) {
-        await inp.type("ok there is death at 5p.m.");
-        await delay(1000);
-        await page.keyboard.press("Enter");
-      }
+       /*await page.evaluate((e1) =>{
+         if(e1.textContent=="jaane tu"){
+            
+            krait = "jaane tu"
+         }else{
+           console.log(e1.textContent);
+         }
+         } , 
+         await page.$('#main > div.RUGMB > div > div > div.tSmQ1 > div:last-child > div > div > div > div.copyable-text > div > span._1VzZY.selectable-text.invisible-space.copyable-text > span'));
+    */ // await delay(5000);
+      //await delay(5000);
+      const krait = await page.evaluate((el) => el.textContent, await page.$('#main > div.RUGMB > div > div > div.tSmQ1 > div:last-child > div > div > div > div.copyable-text > div > span._1VzZY.selectable-text.invisible-space.copyable-text > span'));
+      console.log(krait);
+    const inp = await page.$(
+      "#main > footer > div._3SvgF._1mHgA.copyable-area > div.DuUXI > div > div._1awRl.copyable-text.selectable-text"
+    );
+    await delay(5000);
+    console.log('yes');
+    if(krait=='jaane tu'){
+      await inp.type(`ya jaane na`);
+      await page.keyboard.press("Enter");
+    }
+    else{
+      await inp.type(`F`);
+      await page.keyboard.press("Enter");
+
+    }
+    console.log('yes');
+    //for (let i = 0; i < 6; i++) {
+        //await inp.type("dekho hai 4saal and 8sem");
+        //await inp.type(`${8-i}times agla sem fodenge`);
+       // if(){
+       //     await inp.type("");
+       // }
+        
+        //else{
+        //    await inp.type("");
+        //}
+      //  await delay(1000);
+       // await page.keyboard.press("Enter");
+     // }
+
     
 
  /*   //Change to contact you want to send messages to
@@ -86,3 +129,7 @@ function delay(time) {
     setTimeout(resolve, time);
   });
 }
+
+//var x =document.querySelector('.tSmQ1>div:last-child');
+//#main > div.RUGMB > div > div > div.tSmQ1 > div:nth-child(39) > div > div > div > div.copyable-text > div > span._1VzZY.selectable-text.invisible-space.copyable-text > span
+//var x =document.querySelector('#main > div.RUGMB > div > div > div.tSmQ1 > div:last-child > div > div > div > div.copyable-text > div > span._1VzZY.selectable-text.invisible-space.copyable-text > span');
