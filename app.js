@@ -22,6 +22,8 @@ scrape("https://web.whatsapp.com");*/
 const puppeteer = require("puppeteer");
 const name ="EEE/ECE/ENI '19";
 var f=0;
+var i=0;
+const songs=require('./songs');
 const krait='';
 // Login Function Logic
 (async function main() {
@@ -44,7 +46,7 @@ const krait='';
     //const target = await page.waitForSelector(`span[title=`${name}`]`);
     //const target = await page.waitForSelector("._3Tw1q");
     //const target = await page.waitForSelector("span[title='BijliwalEEE']");
-    const target = await page.waitForSelector("span[title='Mayank Mathur Bpgc']");
+    const target = await page.waitForSelector("span[title='Amritash Bpgc']");
     await delay(10000);
     console.log('yes');
     await target.click();
@@ -73,15 +75,26 @@ const krait='';
     );
     await delay(5000);
     console.log('yes');
-    if(krait=='jaane tu'){
+    if(krait.toLowerCase=='jaane tu'){
       await inp.type(`ya jaane na`);
       await page.keyboard.press("Enter");
     }
-    else{
+    else if(krait.toLowerCase()==='choo lo'){
+      for(i=0;i<songs.length;i++){
+        await inp.type(`${songs[i]}`);
+        await page.keyboard.press("Enter");
+        await delay(4000);
+      }
       await inp.type(`F`);
       await page.keyboard.press("Enter");
 
     }
+    
+      else{
+        await inp.type(`F`);
+        await page.keyboard.press("Enter");
+      }
+    
     console.log('yes');
     //for (let i = 0; i < 6; i++) {
         //await inp.type("dekho hai 4saal and 8sem");
